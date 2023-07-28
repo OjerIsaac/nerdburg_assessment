@@ -1,12 +1,14 @@
 import { Controller, Get } from '@nestjs/common';
-import { AppService } from './app.service';
+import { HttpResponse } from './utils';
 
 @Controller()
 export class AppController {
-  constructor(private readonly appService: AppService) {}
-
   @Get()
-  getHello(): string {
-    return this.appService.getHello();
+  root(): HttpResponse {
+    return {
+      success: true,
+      data: '',
+      message: 'Welcome to Nerdburg backend service',
+    };
   }
 }

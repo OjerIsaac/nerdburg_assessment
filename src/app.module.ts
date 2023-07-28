@@ -1,10 +1,28 @@
 import { Module } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
+import { JwtModule } from '@nestjs/jwt';
+import { envVarsSchema } from './helpers';
+import { DatabaseModule } from './database/database.module';
 import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { JWT_SECRET } from './base/constants';
 
 @Module({
-  imports: [],
+  imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+      cache: true,
+      validationSchema: envVarsSchema,
+    }),
+    DatabaseModule,
+    {
+      ...JwtModule.register({
+        secret: JWT_SECRET,
+        signOptions: {},
+      }),
+      global: true,
+    },
+  ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [],
 })
 export class AppModule {}
