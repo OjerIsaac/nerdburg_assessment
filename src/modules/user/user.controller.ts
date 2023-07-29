@@ -1,4 +1,4 @@
-import { Controller, Body, Post, Query, Get, UseGuards } from '@nestjs/common';
+import { Controller, Body, Post, Query, Get, UseGuards, Put } from '@nestjs/common';
 import { UserService } from './user.service';
 import { HttpResponse } from '../../utils';
 import { SignUpDto } from './dto/signup.dto';
@@ -6,6 +6,7 @@ import { IUser, User } from '../../decorators';
 import { PaginationDto } from '../../queries/page-options';
 import { AuthGuard } from '../../guards';
 import { LoginAuthDto } from './dto/login.dto';
+import { UpdateUserDto } from './dto/update.dto';
 
 @Controller('user')
 export class UserController {
@@ -39,5 +40,16 @@ export class UserController {
     const data = await this.userService.getUser(user.id);
 
     return HttpResponse.success({ data, message: 'record fetched successfully' });
+  }
+
+  @Put()
+  @UseGuards(AuthGuard)
+  async updateLogistic(@Body() body: UpdateUserDto, @User() user: IUser) {
+    const data = await this.userService.updateUser(body, user.id);
+
+    return HttpResponse.success({
+      data,
+      message: 'record updated successfully',
+    });
   }
 }

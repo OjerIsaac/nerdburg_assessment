@@ -7,6 +7,7 @@ import { ErrorHelper, PasswordHelper, Utils } from '../../utils';
 import { SignUpDto } from './dto/signup.dto';
 import { PaginationResultDto, PaginationMetadataDto, PaginationDto } from '../../queries';
 import { LoginAuthDto } from './dto/login.dto';
+import { UpdateUserDto } from './dto/update.dto';
 
 @Injectable()
 export class UserService {
@@ -111,5 +112,9 @@ export class UserService {
   async getUser(id: string): Promise<Users> {
     const user = await this.userRepo.findOne({ where: { id } });
     return user;
+  }
+
+  async updateUser(payload: UpdateUserDto, id: string): Promise<void> {
+    await this.userRepo.update(id, payload);
   }
 }
