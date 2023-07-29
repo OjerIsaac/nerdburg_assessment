@@ -5,6 +5,7 @@ import { envVarsSchema } from './helpers';
 import { DatabaseModule } from './database/database.module';
 import { AppController } from './app.controller';
 import { JWT_SECRET } from './base/constants';
+import { UserModule } from './modules/user';
 
 @Module({
   imports: [
@@ -14,6 +15,7 @@ import { JWT_SECRET } from './base/constants';
       validationSchema: envVarsSchema,
     }),
     DatabaseModule,
+    UserModule,
     {
       ...JwtModule.register({
         secret: JWT_SECRET,

@@ -22,6 +22,7 @@ This is the backend service API for Nerdburg powered by Nodejs, Nestjs and TS.
 - `cp .env.sample .env`
 - Run migration
 - `yarn run db:migrate`
+- `yarn run db:migrate:test`
 - Start the server in dev environment
 - `yarn run start:dev`
 
