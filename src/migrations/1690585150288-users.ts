@@ -11,7 +11,7 @@ export class Users1690585150288 implements MigrationInterface {
                             lastName VARCHAR(100) NULL UNIQUE,
                             email VARCHAR(100) NOT NULL UNIQUE,
                             role VARCHAR(50) NOT NULL,
-                            password TEXT NULL,
+                            password TEXT NOT NULL,
                             createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
                             updatedAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
                             deletedAt TIMESTAMP NULL DEFAULT NULL,

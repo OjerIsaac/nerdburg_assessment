@@ -107,4 +107,9 @@ export class UserService {
 
     return new PaginationResultDto(result, pageMetaDto);
   }
+
+  async getUser(id: string): Promise<Users> {
+    const user = await this.userRepo.findOne({ where: { id } });
+    return user;
+  }
 }

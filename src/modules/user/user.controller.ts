@@ -32,4 +32,12 @@ export class UserController {
 
     return HttpResponse.success({ data, message: 'record fetched successfully' });
   }
+
+  @Get('profile')
+  @UseGuards(AuthGuard)
+  async getUser(@User() user: IUser) {
+    const data = await this.userService.getUser(user.id);
+
+    return HttpResponse.success({ data, message: 'record fetched successfully' });
+  }
 }

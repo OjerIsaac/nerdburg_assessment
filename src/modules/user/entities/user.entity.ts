@@ -1,5 +1,4 @@
 import { Column, Entity } from 'typeorm';
-import { Exclude } from 'class-transformer';
 import { BaseTable } from '../../../base';
 import { UserRole } from '../../../interfaces/user.interface';
 
@@ -17,7 +16,6 @@ export class Users extends BaseTable {
   @Column({ type: 'varchar' })
   role: UserRole;
 
-  @Exclude()
-  @Column({ type: 'text', nullable: true })
+  @Column({ type: 'text', select: false })
   password: string;
 }
