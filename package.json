@@ -27,6 +27,7 @@
     "db:create": "yarn typeorm migration:create",
     "db:generate": "yarn typeorm migration:generate -d ./src/database/typeorm-datasource.ts",
     "db:migrate": "yarn typeorm migration:run -d ./src/database/typeorm-datasource.ts",
+    "db:migrate:test": "NODE_ENV=test yarn typeorm migration:run -d ./src/database/typeorm-datasource.ts",
     "db:revert": "yarn typeorm migration:revert -d ./src/database/typeorm-datasource.ts",
     "db:drop": "yarn typeorm schema:drop -d ./src/database/typeorm-datasource.ts",
     "db:migrate:prod": "node ./node_modules/typeorm/cli migration:run -d ./dist/database/typeorm-datasource.js",
