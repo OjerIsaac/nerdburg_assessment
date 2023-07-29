@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { Not, Repository } from 'typeorm';
 import { JwtService } from '@nestjs/jwt';
 import { Users } from './entities';
 import { ErrorHelper, PasswordHelper, Utils } from '../../utils';
@@ -8,6 +8,7 @@ import { SignUpDto } from './dto/signup.dto';
 import { PaginationResultDto, PaginationMetadataDto, PaginationDto } from '../../queries';
 import { LoginAuthDto } from './dto/login.dto';
 import { UpdateUserDto } from './dto/update.dto';
+import { UserRole } from '../../interfaces';
 
 @Injectable()
 export class UserService {
@@ -116,5 +117,19 @@ export class UserService {
 
   async updateUser(payload: UpdateUserDto, id: string): Promise<void> {
     await this.userRepo.update(id, payload);
+  }
+
+  async deleteUser(id: string) {
+    const user = await this.userRepo.findOne({
+      where: { id, role: Not(UserRole.ADMIN) },
+    });
+
+    if (!user) {
+      ErrorHelper.NotFoundException('User not found');
+    }
+
+    await this.userRepo.softDelete(user.id);
+
+    return [];
   }
 }

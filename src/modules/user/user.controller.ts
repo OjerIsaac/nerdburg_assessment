@@ -1,4 +1,4 @@
-import { Controller, Body, Post, Query, Get, UseGuards, Put } from '@nestjs/common';
+import { Controller, Body, Post, Query, Get, UseGuards, Put, Delete, Param } from '@nestjs/common';
 import { UserService } from './user.service';
 import { HttpResponse } from '../../utils';
 import { SignUpDto } from './dto/signup.dto';
@@ -51,5 +51,12 @@ export class UserController {
       data,
       message: 'record updated successfully',
     });
+  }
+
+  @Delete('/:id')
+  async deleteWaitlistUser(@Param('id') id: string) {
+    const data = await this.userService.deleteUser(id);
+
+    return HttpResponse.success({ data, message: 'record removed successfully' });
   }
 }
