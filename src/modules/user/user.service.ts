@@ -18,12 +18,12 @@ export class UserService {
   ) {}
 
   async createUser(payload: SignUpDto): Promise<any> {
-    // check if user exist
     const userExist = await this.checkIfUserExist({
       email: payload.email,
       firstName: payload.firstName,
       lastName: payload.lastName,
     });
+
     if (userExist) {
       ErrorHelper.ForbiddenException('User already exist');
     }
@@ -48,7 +48,7 @@ export class UserService {
     return userCount > 0;
   }
 
-  private async signUserToken(user: Users) {
+  async signUserToken(user: Users) {
     const userInfo = {
       role: user.role,
       firstName: user.firstName,
@@ -99,6 +99,9 @@ export class UserService {
 
     const result = users.map(p => ({
       id: p.id,
+      firstName: p.firstName,
+      lastName: p.lastName,
+      role: p.role,
       email: p.email,
     }));
 
@@ -112,6 +115,7 @@ export class UserService {
 
   async getUser(id: string): Promise<Users> {
     const user = await this.userRepo.findOne({ where: { id } });
+    delete user.password;
     return user;
   }
 
