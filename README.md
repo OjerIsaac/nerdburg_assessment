@@ -26,5 +26,34 @@ This is the backend service API for Nerdburg powered by Nodejs, Nestjs and TS.
 - Start the server in dev environment
 - `yarn run start:dev`
 
+## Snapshots
+<p align="center">
+  <img src="01.jpg" width="100%" alt="" title="image sample">
+</p>
+
+<p align="center">
+  <img src="02.jpg" width="100%" alt="" title="image sample">
+</p>
+
+<p align="center">
+  <img src="03.jpg" width="100%" alt="" title="image sample">
+</p>
+
+<p align="center">
+  <img src="04.jpg" width="100%" alt="" title="image sample">
+</p>
+
+<p align="center">
+  <img src="05.jpg" width="100%" alt="" title="image sample">
+</p>
+
+<p align="center">
+  <img src="06.jpg" width="100%" alt="" title="image sample">
+</p>
+
+<p align="center">
+  <img src="07.jpg" width="100%" alt="" title="image sample">
+</p>
+
 ## Issues
 Should you have issues setting up or code suggestion reach out to the developer [isaacojerumu@gmail.com](mailto:isaacojerumu@gmail.com)
